@@ -26,6 +26,9 @@ importers:
       '@angular/router':
         specifier: ^21.1.0
         version: 21.2.9(@angular/common@21.2.9(@angular/core@21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2))(@angular/platform-browser@21.2.9(@angular/common@21.2.9(@angular/core@21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@tanstack/angular-query-experimental':
+        specifier: ^5.99.2
+        version: 5.99.2(@angular/common@21.2.9(@angular/core@21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2))
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -1404,6 +1407,18 @@ packages:
 
   '@tailwindcss/postcss@4.2.2':
     resolution: {integrity: sha512-n4goKQbW8RVXIbNKRB/45LzyUqN451deQK0nzIeauVEqjlI49slUlgKYJM2QyUzap/PcpnS7kzSUmPb1sCRvYQ==}
+
+  '@tanstack/angular-query-experimental@5.99.2':
+    resolution: {integrity: sha512-lZjcnLjU7qVBtjz8CjAZ+jjKZVIpVj6ckFfdJCLdyGgtXzX3a0j1iOCJb3KeXMijzIYpM8CUNchMVNL9HbjAoA==}
+    peerDependencies:
+      '@angular/common': '>=16.0.0'
+      '@angular/core': '>=16.0.0'
+
+  '@tanstack/query-core@5.99.2':
+    resolution: {integrity: sha512-1HunU0bXVsR1ZJMZbcOPE6VtaBJxsW809RE9xPe4Gz7MlB0GWwQvuTPhMoEmQ/hIzFKJ/DWAuttIe7BOaWx0tA==}
+
+  '@tanstack/query-devtools@5.99.2':
+    resolution: {integrity: sha512-TEF1d+RYO9l8oeCwgzmOHIgKwAzXQmw2s/ny2bW8qeg2OMkkLjALfVEivgCMR3OL/jVdMmeTPX56WrV+uvYJFg==}
 
   '@tufjs/canonical-json@2.0.0':
     resolution: {integrity: sha512-yVtV8zsdo8qFHe+/3kw81dSLyF7D576A5cCFCi4X7B39tWT7SekaEFUnvnWJHz+9qO7qJTah1JbrDjWKqFtdWA==}
@@ -4022,6 +4037,19 @@ snapshots:
       '@tailwindcss/oxide': 4.2.2
       postcss: 8.5.10
       tailwindcss: 4.2.2
+
+  '@tanstack/angular-query-experimental@5.99.2(@angular/common@21.2.9(@angular/core@21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2))':
+    dependencies:
+      '@angular/common': 21.2.9(@angular/core@21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': 21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2)
+      '@tanstack/query-core': 5.99.2
+    optionalDependencies:
+      '@tanstack/query-devtools': 5.99.2
+
+  '@tanstack/query-core@5.99.2': {}
+
+  '@tanstack/query-devtools@5.99.2':
+    optional: true
 
   '@tufjs/canonical-json@2.0.0': {}
 
