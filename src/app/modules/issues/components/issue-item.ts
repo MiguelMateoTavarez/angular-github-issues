@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { GithubIssue, State } from '../interfaces';
 import { RouterLink } from '@angular/router';
+import { IssueService } from '../services/issue-service';
 
 @Component({
   selector: 'issue-item',
   imports: [RouterLink],
   template: `
-    <div class="flex items-center px-2 py-3 mb-5 border rounded-md bg-slate-900 hover:bg-slate-800">
+    <div (mouseenter)="prefetchData()" class="flex items-center px-2 py-3 mb-5 border rounded-md bg-slate-900 hover:bg-slate-800">
       @if (isOpen()) {
         <i class="fa-regular fa-folder-open text-green-500"></i>
       } @else {
@@ -50,9 +51,16 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IssueItem {
+  private readonly issueService = inject(IssueService);
+
   issue = input.required<GithubIssue>();
   isOpen = computed(() => this.issue().state === State.Open);
   since = computed(() => {
     const date = new Date(this.issue().created_at);
   });
+
+  prefetchData() {
+    // this.issueService.prefetchIssue(this.issue().id.toString())
+    this.issueService.setIssueData(this.issue())
+  }
 }
