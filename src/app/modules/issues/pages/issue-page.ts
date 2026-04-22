@@ -15,6 +15,12 @@ import { IssueComment } from "../components/issue-comment";
   }@else {
     <issue-comment [issue]="issueQuery().data()!" />
   }
+
+  @for(issueComment of issueCommentsQuery().data(); track issueComment.id) {
+    <issue-comment [issue]="issueComment" />
+  }@empty {
+    <p>No comments</p>  
+  }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -26,5 +32,6 @@ export default class IssuePage implements OnInit {
     this.issueService.setIssueNumber(this.issueId());
   }
 
-  public issueQuery = computed(() => this.issueService.issueQuery);
+  protected issueQuery = computed(() => this.issueService.issueQuery);
+  protected issueCommentsQuery = computed(() => this.issueService.issueCommentsQuery);
 }

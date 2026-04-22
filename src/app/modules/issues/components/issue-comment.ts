@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   template: `
   <section class="w-full">
     <article class="border border-gray-200 mt-2 rounded-md shadow-sm">
-      <header class="flex items-center bg-blue-500 text-white p-2 rounded-t-md">
+      <header class="flex items-center bg-slate-900 text-white p-2 rounded-t-md">
         <img [src]="issue().user.avatar_url" alt="User avatar" class="w-8 h-8 rounded-full">
         <span class="mx-2">{{ issue().user.login }}</span>
       </header>
