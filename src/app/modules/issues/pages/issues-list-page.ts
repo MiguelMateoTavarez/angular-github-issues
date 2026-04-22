@@ -1,8 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { RouterLink } from "@angular/router";
+import { IssuesService } from '../services/issues-service';
+import { LabelSelector } from "../components/label-selector";
+import { IssueItem } from "../components/issue-item";
 
 @Component({
   selector: 'app-issues-list-page',
-  imports: [],
+  imports: [LabelSelector, IssueItem],
   template: `
     <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <header class="col-span-3">
@@ -17,13 +21,25 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         </div>
       </article>
       <article class="mt-4 flex flex-col col-span-2">
-        <h3>Issues:</h3>
+        @for(issue of issuesQuery().data(); track issue.id) {
+          <issue-item [issue]="issue" />
+        }@empty {
+          @if(issuesQuery().isLoading()) {
+            <p>Loading...</p>
+          } @else {
+            <p>No issues found</p>
+          }
+        }
         <!-- TODO: Issues list -->
         <!-- TODO: Spinner-loader -->
         <!-- TODO: Not issues after filter -->
       </article>
       <article>
-        <h3>Labels</h3>
+        @if(labelsQuery().isLoading()) {
+          <p>Loading...</p>
+        } @else {
+          <issues-label-selector [labels]="labelsQuery().data() ?? []" />
+        }
         <!-- TODO: Spinners -->
         <!-- TODO: Label Selector -->
       </article>
@@ -31,4 +47,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class IssuesListPage {}
+export default class IssuesListPage {
+  private readonly issuesService = inject(IssuesService);
+
+  public labelsQuery = computed(() => this.issuesService.labelsQuery);
+  public issuesQuery = computed(() => this.issuesService.issuesQuery);
+}
